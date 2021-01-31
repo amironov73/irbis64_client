@@ -1,10 +1,6 @@
-# irbis64_client
+// This is an open source non-commercial project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
 
-Visual C++ wrapper for irbis64_client.dll
-
-### Example
-
-```c
 #include <stdio.h>
 #include <string.h>
 
@@ -69,4 +65,3 @@ int main (int argc, char **argv)
 
     return 0;
 }
-```

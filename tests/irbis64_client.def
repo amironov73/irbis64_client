@@ -1,0 +1,27 @@
+LIBRARY irbis64_client
+ 
+EXPORTS
+
+IC_reg                  @72
+IC_unreg                @71
+IC_set_client_time_live @66
+IC_set_show_waiting     @67
+IC_set_webserver        @70
+IC_set_webcgi           @69
+IC_set_blocksocket      @68
+IC_isbusy               @65
+IC_update_ini           @64
+IC_getresourse          @63
+IC_clearresourse        @62
+IC_getresoursegroup     @61
+IC_getbinaryresourse    @60
+IC_putresourse          @59
+IC_read                 @58
+IC_readformat           @57
+IC_update               @56
+IC_updategroup          @55
+IC_runlock              @54
+IC_ifupdate             @53
+IC_maxmfn               @52
+IC_fieldn               @51
+IC_field                @50

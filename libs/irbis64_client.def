@@ -1,0 +1,76 @@
+LIBRARY irbis64_client
+ 
+EXPORTS
+
+IC_adm_dbdelete               = IC_adm_dbdelete             
+IC_adm_dbempty                = IC_adm_dbempty              
+IC_adm_DBStartCreateDictionry = IC_adm_DBStartCreateDictionry
+IC_adm_DBStartReorgDictionry  = IC_adm_DBStartReorgDictionry
+IC_adm_DBStartReorgMaster     = IC_adm_DBStartReorgMaster   
+IC_adm_DBunlock               = IC_adm_DBunlock             
+IC_adm_DBunlockMFN            = IC_adm_DBunlockMFN          
+IC_adm_getallDeletedLists     = IC_adm_getallDeletedLists   
+IC_adm_getClientlist          = IC_adm_getClientlist        
+IC_adm_getClientslist         = IC_adm_getClientslist       
+IC_adm_getDeletedList         = IC_adm_getDeletedList       
+IC_adm_getProcessList         = IC_adm_getProcessList       
+IC_adm_newdb                  = IC_adm_newdb                
+IC_adm_restartserver          = IC_adm_restartserver        
+IC_adm_SetClientslist         = IC_adm_SetClientslist       
+IC_changemfn                  = IC_changemfn                
+IC_clearresourse              = IC_clearresourse            
+IC_delim_reset                = IC_delim_reset              
+IC_field                      = IC_field                    
+IC_fieldn                     = IC_fieldn                   
+IC_fldadd                     = IC_fldadd                   
+IC_fldempty                   = IC_fldempty                 
+IC_fldrep                     = IC_fldrep                   
+IC_fldtag                     = IC_fldtag                   
+IC_gbl                        = IC_gbl                      
+IC_getbinaryresourse          = IC_getbinaryresourse        
+IC_getmfn                     = IC_getmfn                   
+IC_getposting                 = IC_getposting               
+IC_getresourse                = IC_getresourse              
+IC_getresoursegroup           = IC_getresoursegroup         
+IC_ifupdate                   = IC_ifupdate                 
+IC_isActualized               = IC_isActualized             
+IC_isbusy                     = IC_isbusy                   
+IC_isDeleted                  = IC_isDeleted                
+IC_isLocked                   = IC_isLocked                 
+IC_maxmfn                     = IC_maxmfn                   
+IC_nexttrm                    = IC_nexttrm                  
+IC_nexttrmgroup               = IC_nexttrmgroup             
+IC_nfields                    = IC_nfields                  
+IC_nocc                       = IC_nocc                     
+IC_nooperation                = IC_nooperation              
+IC_posting                    = IC_posting                  
+IC_postingformat              = IC_postingformat            
+IC_postinggroup               = IC_postinggroup             
+IC_prevtrm                    = IC_prevtrm                  
+IC_prevtrmgroup               = IC_prevtrmgroup             
+IC_print                      = IC_print                    
+IC_putresourse                = IC_putresourse              
+IC_read                       = IC_read                     
+IC_readformat                 = IC_readformat               
+IC_recdel                     = IC_recdel                   
+IC_recdummy                   = IC_recdummy                 
+IC_record_sformat             = IC_record_sformat           
+IC_recundel                   = IC_recundel                 
+IC_recunlock                  = IC_recunlock                
+IC_reg                        @72
+IC_reset_delim                = IC_reset_delim              
+IC_runlock                    = IC_runlock                  
+IC_search                     = IC_search                   
+IC_searchscan                 = IC_searchscan               
+IC_set_blocksocket            = IC_set_blocksocket          
+IC_set_client_time_live       = IC_set_client_time_live     
+IC_set_show_waiting           = IC_set_show_waiting         
+IC_set_webcgi                 = IC_set_webcgi               
+IC_set_webserver              = IC_set_webserver            
+IC_sformat                    = IC_sformat                  
+IC_sformatgroup               = IC_sformatgroup             
+IC_stat                       = IC_stat                     
+IC_unreg                      @71
+IC_update                     = IC_update                   
+IC_update_ini                 = IC_update_ini               
+IC_updategroup                = IC_updategroup              

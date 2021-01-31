@@ -1,0 +1,101 @@
+Microsoft (R) COFF/PE Dumper Version 14.28.29336.0
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+
+Dump of file irbis64_client.dll
+
+File Type: DLL
+
+  Section contains the following exports for irbis64_client.dll
+
+    00000000 characteristics
+           0 time date stamp
+        0.00 version
+           1 ordinal base
+          72 number of functions
+          72 number of names
+
+    ordinal hint RVA      name
+
+         11    0 0005DB74 IC_adm_DBStartCreateDictionry
+         10    1 0005DC2C IC_adm_DBStartReorgDictionry
+          9    2 0005DCE4 IC_adm_DBStartReorgMaster
+         13    3 0005D998 IC_adm_DBunlock
+         12    4 0005DA50 IC_adm_DBunlockMFN
+          5    5 0005E000 IC_adm_SetClientslist
+         15    6 0005D814 IC_adm_dbdelete
+         16    7 0005D75C IC_adm_dbempty
+          8    8 0005DD9C IC_adm_getClientlist
+          7    9 0005DE68 IC_adm_getClientslist
+         18    A 0005D590 IC_adm_getDeletedList
+          6    B 0005DF34 IC_adm_getProcessList
+         17    C 0005D67C IC_adm_getallDeletedLists
+         14    D 0005D8CC IC_adm_newdb
+         19    E 0005D4F0 IC_adm_restartserver
+         43    F 0005BEC4 IC_changemfn
+         62   10 0005B0D8 IC_clearresourse
+          2   11 0005E22C IC_delim_reset
+         50   12 0005BB90 IC_field
+         51   13 0005BB60 IC_fieldn
+         49   14 0005BC30 IC_fldadd
+         44   15 0005BE3C IC_fldempty
+         48   16 0005BCF8 IC_fldrep
+         45   17 0005BE10 IC_fldtag
+         20   18 0005D3C0 IC_gbl
+         60   19 0005B1D0 IC_getbinaryresourse
+         39   1A 0005C0E8 IC_getmfn
+          3   1B 0005E154 IC_getposting
+         63   1C 0005AFF8 IC_getresourse
+         61   1D 0005B0E0 IC_getresoursegroup
+         53   1E 0005B9EC IC_ifupdate
+         37   1F 0005C1A8 IC_isActualized
+         35   20 0005C200 IC_isDeleted
+         36   21 0005C1D4 IC_isLocked
+         65   22 0005AF28 IC_isbusy
+         52   23 0005BAA8 IC_maxmfn
+         34   24 0005C22C IC_nexttrm
+         33   25 0005C354 IC_nexttrmgroup
+         47   26 0005BDBC IC_nfields
+         46   27 0005BDE4 IC_nocc
+          4   28 0005E0B4 IC_nooperation
+         30   29 0005C6EC IC_posting
+         28   2A 0005C934 IC_postingformat
+         29   2B 0005C80C IC_postinggroup
+         32   2C 0005C48C IC_prevtrm
+         31   2D 0005C5B4 IC_prevtrmgroup
+         22   2E 0005D148 IC_print
+         59   2F 0005B26C IC_putresourse
+         58   30 0005B350 IC_read
+         57   31 0005B460 IC_readformat
+         42   32 0005BF50 IC_recdel
+         38   33 0005C110 IC_recdummy
+         24   34 0005CEF0 IC_record_sformat
+         41   35 0005BFD8 IC_recundel
+         40   36 0005C060 IC_recunlock
+         72   37 0005AC64 IC_reg
+          1   38 0005E21C IC_reset_delim
+         54   39 0005B930 IC_runlock
+         27   3A 0005CAC8 IC_search
+         26   3B 0005CC48 IC_searchscan
+         68   3C 0005AEB4 IC_set_blocksocket
+         66   3D 0005AF00 IC_set_client_time_live
+         67   3E 0005AEE4 IC_set_show_waiting
+         69   3F 0005AE90 IC_set_webcgi
+         70   40 0005AE60 IC_set_webserver
+         25   41 0005CDE0 IC_sformat
+         23   42 0005D01C IC_sformatgroup
+         21   43 0005D294 IC_stat
+         71   44 0005ADA8 IC_unreg
+         56   45 0005B5D8 IC_update
+         64   46 0005AF44 IC_update_ini
+         55   47 0005B70C IC_updategroup
+
+  Summary
+
+        1000 .edata
+        3000 .idata
+        7000 .reloc
+        9000 .rsrc
+        1000 BSS
+       5E000 CODE
+        1000 DATA
