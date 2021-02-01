@@ -12,6 +12,8 @@ if(MSVC)
 
     # add_compile_options(/UTF-8 /Wall)
     add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+    set (MSVC_RUNTIME_LIBRARY MultiThreaded)
+    set (CMAKE_C_FLAGS_RELEASE "/MT")
 
 endif(MSVC)
 

@@ -10,6 +10,8 @@ Visual C++ wrapper for irbis64_client.dll
 
 #include "irbis64_client.h"
 
+#define DB "IBIS"
+
 int main (int argc, char **argv)
 {
     int rc;
@@ -33,27 +35,34 @@ int main (int argc, char **argv)
         }
     }
 
-    memset(answer, 0, answerSize);
-
-    rc = IC_reg(hostname, "6666", 'C', username, password, &panswer, answerSize);
+    // Подключение к серверу
+    memset (answer, 0, answerSize);
+    rc = IC_reg (hostname, "6666", 'A', username, password, &panswer, answerSize);
     printf ("IC_reg=%d\n", rc);
-    if (rc >= 0) {
+    if (rc < 0) {
+        printf ("EXIT\n");
+        return 1;
+    } else {
         printf("\n%s", answer);
     }
 
+    // Получение максимального MFN для базы данных
     printf ("\n");
-    rc = IC_maxmfn("IBIS");
+    rc = IC_maxmfn (DB);
     printf ("IC_maxmfn=%d\n", rc);
 
+    // Чтение записи с сервера
     printf ("\n");
-    rc = IC_read("IBIS", 1, 0, &precord, recordSize);
+    rc = IC_read (DB, 1, 0, &precord, recordSize);
     printf ("IC_read=%d\n", rc);
     if (rc >= 0) {
-        fieldIndex = IC_fieldn(record, 200, 1);
+
+        // Доступ к полям записи
+        fieldIndex = IC_fieldn (record, 200, 1);
         printf ("IC_fieldn=%d\n", fieldIndex);
         if (fieldIndex > 0) {
             memset(answer, 0, answerSize);
-            rc = IC_field(record, fieldIndex, 'a', answer, answerSize);
+            rc = IC_field (record, fieldIndex, 'a', answer, answerSize);
             printf ("IC_field=%d\n", rc);
             if (rc >= 0) {
                 printf ("IC_field=%s", answer);
@@ -61,12 +70,45 @@ int main (int argc, char **argv)
         }
     }
 
+    // Форматирование записи по ее MFN
+    printf ("\n");
+    memset (answer, 0, answerSize);
+    rc = IC_sformat (DB, 1, "@brief", answer, answerSize);
+    printf ("IC_sformat=%d\n", rc);
+    if (rc >= 0) {
+        printf ("IC_sformat=%s\n", answer);
+    }
+
+    // Поиск
+    printf ("\n");
+    memset (answer, 0, answerSize);
+    rc = IC_search (DB, "\x4B\x3D\xD0\xB1\xD0\xB5\xD1\x82\xD0\xBE\xD0\xBD\x24", 10, 1, "@brief",
+        answer, answerSize);
+    printf ("IC_search=%d\n", rc);
+    if (rc >= 0) {
+        printf ("IC_search=%s\n", answer);
+    }
+
+    // Получение списка серверных процессов
+    printf ("\n");
+    memset (answer, 0, answerSize);
+    rc = IC_adm_getProcessList (answer, answerSize);
+    printf ("IC_adm_getProcessList=%d\n", rc);
+    if (rc >= 0) {
+        printf ("IC_adm_getProcessList=%s\n", answer);
+    }
+
+    // Отключение от сервера
     printf ("\n");
     rc = IC_unreg(username);
     printf ("IC_unreg=%d\n", rc);
 
-    printf("Hello, IRBIS64!\n");
+    printf ("\nThat's All, Folks!\n\n");
 
     return 0;
 }
 ```
+
+### Build status
+
+[![Build status](https://img.shields.io/appveyor/ci/AlexeyMironov/irbis64-client.svg)](https://ci.appveyor.com/project/AlexeyMironov/irbis64-client/)

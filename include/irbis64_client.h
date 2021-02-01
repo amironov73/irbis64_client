@@ -11,6 +11,10 @@
 #define IRBIS_IMPORT /* __declspec(dllimport) */
 #define IRBIS_CALL   __stdcall
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 // ===================================================================
 // Функции общего назначения
 // ===================================================================
@@ -64,7 +68,7 @@ IRBIS_IMPORT int IRBIS_CALL IC_set_blocksocket
     );
 
 // Определение завершения очередного обращения к серверу
-IRBIS_IMPORT int IC_isbusy (void);
+IRBIS_IMPORT int IC_isbusy(void);
 
 // Обновление INI-файла - профиля пользователя на сервере
 IRBIS_IMPORT int IRBIS_CALL IC_update_ini
@@ -87,7 +91,7 @@ IRBIS_IMPORT int IRBIS_CALL IC_getresourse
     );
 
 // Очистка памяти кэша
-IRBIS_IMPORT int IC_clearresourse (void);
+IRBIS_IMPORT int IC_clearresourse(void);
 
 // Групповое чтение текстовых ресурсов
 IRBIS_IMPORT int IRBIS_CALL IC_getresoursegroup
@@ -204,5 +208,241 @@ IRBIS_IMPORT int IRBIS_CALL IC_field
         char *answer,
         int bufSize
     );
+
+// ===================================================================
+// Функции поиска
+// ===================================================================
+
+// Прямой (по словарю) поиск записей по заданному поисковому выражению
+IRBIS_IMPORT int IRBIS_CALL IC_search
+    (
+        const char *database,
+        const char *expression,
+        int numberOfRecords,
+        int firstRecord,
+        const char *format,
+        char *answer,
+        int bufSize
+    );
+
+// Прямой (по словарю) поиск записей по заданному поисковому выражению
+IRBIS_IMPORT int IRBIS_CALL IC_searchscan
+    (
+        const char *database,
+        const char *expression,
+        int numberOfRecords,
+        int firstRecord,
+        const char *format,
+        int minMfn,
+        int maxMfn,
+        const char *sequential,
+        char *answer,
+        int bufSize
+    );
+
+// ===================================================================
+// Функции форматирования
+// ===================================================================
+
+// Расформатирование записи, заданной по номеру (mfn)
+IRBIS_IMPORT int IRBIS_CALL IC_sformat
+    (
+        const char *database,
+        int mfn,
+        const char *format,
+        char *answer,
+        int bufSize
+    );
+
+// Расформатирование группы записей
+IRBIS_IMPORT int IRBIS_CALL IC_sformatgroup
+    (
+        const char *database,
+        const char *mfnList,
+        const char *format,
+        char *answer,
+        int bufSize
+    );
+
+// ===================================================================
+// Функции пакетной обработки
+// ===================================================================
+
+IRBIS_IMPORT int IRBIS_CALL IC_print
+    (
+        const char *database,
+        const char *table,
+        const char *head,
+        const char *modelField,
+        const char *searchExpression,
+        int minMfn,
+        int maxMfn,
+        const char *sequential,
+        const char *mfnList,
+        char *answer,
+        int bufSize
+    );
+
+// Формирование выходной формы в виде статистических распределений
+IRBIS_IMPORT int IRBIS_CALL IC_stat
+    (
+        const char *database,
+        const char *statForm,
+        const char *searchExpression,
+        int minMfn,
+        int maxMfn,
+        const char *sequential,
+        const char *mfnList,
+        char *answer,
+        int bufSize
+    );
+
+// Выполнение задания на глобальную корректировку
+IRBIS_IMPORT int IRBIS_CALL IC_gbl
+    (
+        const char *database,
+        int ifUpdate,
+        const char *globalCorrection,
+        const char *searchExpression,
+        int minMfn,
+        int maxMfn,
+        const char *sequential,
+        const char *mfnList,
+        char *answer,
+        int bufSize
+    );
+
+// ===================================================================
+// Функции администратора
+// ===================================================================
+
+// Перезапустить сервер ИРБИС64
+IRBIS_IMPORT int IC_adm_restartServer();
+
+// Получить список удаленных документов
+IRBIS_IMPORT int IRBIS_CALL IC_adm_getDeletedList
+    (
+        const char *database,
+        char *answer,
+        int bufSize
+    );
+
+// Получить общие сведения о базе данных: списки удаленных/
+// заблокированных/неактуализированных, максимальный MFN
+// и признак монопольной блокировки
+IRBIS_IMPORT int IRBIS_CALL IC_adm_getAllDeletedLists
+    (
+        const char *database,
+        char *answer,
+        int bufSize
+    );
+
+// Опустошить базу данных
+IRBIS_IMPORT int IRBIS_CALL IC_adm_dbEmpty
+    (
+        const char *database
+    );
+
+// Удалить базу данных
+IRBIS_IMPORT int IRBIS_CALL IC_adm_dbDelete
+    (
+        const char *database
+    );
+
+// Создать новую базу данных электронного каталога
+IRBIS_IMPORT int IRBIS_CALL IC_adm_newDb
+    (
+        const char *database,
+        const char *description,
+        int reader
+    );
+
+// Снять монопольную блокировку базы данных
+IRBIS_IMPORT int IRBIS_CALL IC_adm_dbUnlock
+    (
+        const char *database
+    );
+
+// Снять блокировку заданных записей
+IRBIS_IMPORT int IRBIS_CALL IC_adm_dbUnlockMfn
+    (
+        const char *database,
+        const char *mfnList
+    );
+
+// Создать словарь базы данных заново
+IRBIS_IMPORT int IRBIS_CALL IC_adm_dbStartCreateDictionry
+    (
+        const char *database
+    );
+
+// Реорганизовать словарь базы данных
+IRBIS_IMPORT int IRBIS_CALL IC_adm_dbStartReorgDictionry
+    (
+        const char *database
+    );
+
+// Реорганизовать файл документов базы данных
+IRBIS_IMPORT int IRBIS_CALL IC_adm_dbStartReorgMaster
+    (
+        const char *database
+    );
+
+// Получить список зарегистрированных (текущих) клиентов
+IRBIS_IMPORT int IRBIS_CALL IC_adm_getClientList
+    (
+        char *answer,
+        int bufSize
+    );
+
+// Получить список клиентов для доступа к серверу
+IRBIS_IMPORT int IRBIS_CALL IC_adm_getClientsList
+    (
+        char *answer,
+        int bufSize
+    );
+
+// Получить список запущенных процессов на сервере
+IRBIS_IMPORT int IRBIS_CALL IC_adm_getProcessList
+    (
+        char *answer,
+        int bufSize
+    );
+
+// Обновить список клиентов для доступа к серверу
+IRBIS_IMPORT int IRBIS_CALL IC_adm_setClientsList
+    (
+        const char *clientMnu
+    );
+
+// ===================================================================
+// Вспомогательные функции
+// ===================================================================
+
+// Подтверждение регистрации
+IRBIS_IMPORT int IC_nooperation();
+
+// Получить элемент исходной ссылки
+IRBIS_IMPORT int IRBIS_CALL IC_getposting
+    (
+        const char *posting,
+        int type
+    );
+
+// Заменить реальные разделители строк $0D0A на псевдоразделители $3130
+IRBIS_IMPORT char* IRBIS_CALL IC_reset_delim
+    (
+        char *line
+    );
+
+// Заменить псевдоразделители $3130 на реальные разделители строк $0D0A
+IRBIS_IMPORT char* IRBIS_CALL IC_delim_reset
+    (
+        char *line
+    );
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif // IRBIS64_CLIENT_H

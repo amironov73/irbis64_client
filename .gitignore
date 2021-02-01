@@ -361,3 +361,5 @@ CMakeCache.txt
 cmake_install.cmake
 CMakeFiles/
 *.tasks
+build/
+tests/build
