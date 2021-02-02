@@ -1,3 +1,15 @@
+#if defined(_WIN64) || defined(__WIN64__) || defined(__x86_64__)
+#error 64-bit mode not supported!
+#endif
+
+#if !defined(__WIN32__) && !defined(_WIN32) && !defined(WIN32)
+#error Only WIN32 is supported!
+#endif
+
+#if !defined(_MSC_VER)
+#error Only Visual C++ is supported!
+#endif
+
 #define IRBIS_CALL   __stdcall
 
 int IRBIS_CALL IC_reg
