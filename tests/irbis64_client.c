@@ -114,7 +114,6 @@ int IRBIS_CALL IC_getbinaryresourse
    return 0;
 }
 
-// ������ ���������� ������� �� ������
 int IRBIS_CALL IC_putresourse
     (
         int path,
@@ -225,7 +224,228 @@ int IRBIS_CALL IC_field
    return 0;
 }
 
-//===================
+int IRBIS_CALL IC_fldadd
+    (
+        char *record,
+        int fieldTag,
+        int fieldIndex,
+        const char *fieldValue,
+        int bufSize
+    )
+{
+    return 0;
+}
+
+int IRBIS_CALL IC_fldrep
+    (
+        char *record,
+        int fieldIndex,
+        const char *fieldValue,
+        int bufSize
+    )
+{
+    return 0;
+}
+
+int IRBIS_CALL IC_nfields
+    (
+        const char *record
+    )
+{
+    return 0;
+}
+
+int IRBIS_CALL IC_nocc
+    (
+        const char *record,
+        int fieldTag
+    )
+{
+    return 0;
+}
+
+int IRBIS_CALL IC_fldtag
+    (
+        const char *record,
+        int fieldIndex
+    )
+{
+    return 0;
+}
+
+int IRBIS_CALL IC_fldempty
+    (
+        char *record
+    )
+{
+    return 0;
+}
+
+int IRBIS_CALL IC_changemfn
+    (
+        char *record,
+        int newMfn
+    )
+{
+    return 0;
+}
+
+int IRBIS_CALL IC_recdel
+    (
+        char *record
+    )
+{
+    return 0;
+}
+
+int IRBIS_CALL IC_recundel
+    (
+        char *record
+    )
+{
+    return 0;
+}
+
+int IRBIS_CALL IC_recunlock
+    (
+        char *record
+    )
+{
+    return 0;
+}
+
+int IRBIS_CALL IC_getmfn
+    (
+        const char *record
+    )
+{
+    return 0;
+}
+
+int IRBIS_CALL IC_recdummy
+    (
+        char *record,
+        int bufSize
+    )
+{
+    return 0;
+}
+
+int IRBIS_CALL IC_isActualized
+    (
+        const char *record
+    )
+{
+    return 0;
+}
+
+int IRBIS_CALL IC_isLocked
+    (
+        const char *record
+    )
+{
+    return 0;
+}
+
+int IRBIS_CALL IC_isDeleted
+    (
+        const char *record
+    )
+{
+    return 0;
+}
+
+int IRBIS_CALL IC_nexttrm
+    (
+        const char *database,
+        const char *term,
+        int number,
+        char *answer,
+        int bufSize
+    )
+{
+    return 0;
+}
+
+int IRBIS_CALL IC_nexttrmgroup
+    (
+        const char *database,
+        const char *term,
+        int number,
+        const char *format,
+        char *answer,
+        int bufSize
+    )
+{
+    return 0;
+}
+
+int IRBIS_CALL IC_prevtrm
+    (
+        const char *database,
+        const char *term,
+        int number,
+        char *answer,
+        int bufSize
+    )
+{
+    return 0;
+}
+
+int IRBIS_CALL IC_prevtrmgroup
+    (
+        const char *database,
+        const char *term,
+        int number,
+        const char *format,
+        char *answer,
+        int bufSize
+    )
+{
+    return 0;
+}
+
+int IRBIS_CALL IC_posting
+    (
+        const char *database,
+        const char *term,
+        int number,
+        int first,
+        char *answer,
+        int bufSize
+    )
+{
+    return 0;
+}
+
+int IRBIS_CALL IC_postinggroup
+    (
+        const char *database,
+        const char *terms,
+        char *answer,
+        int bufSize
+    )
+{
+    return 0;
+}
+
+int IRBIS_CALL IC_postingformat
+    (
+        const char *database,
+        const char *term,
+        int number,
+        int first,
+        const char *format,
+        char *formattedAnswer,
+        int formattedBufSize,
+        char *linkAnswer,
+        int linkBufSize
+    )
+{
+    return 0;
+}
+
+// =========
 
 int IRBIS_CALL IC_search
     (
@@ -263,6 +483,18 @@ int IRBIS_CALL IC_sformat
         const char *database,
         int mfn,
         const char *format,
+        char *answer,
+        int bufSize
+    )
+{
+    return 0;
+}
+
+int IRBIS_CALL IC_record_sformat
+    (
+        const char *database,
+        const char *format,
+        const char *record,
         char *answer,
         int bufSize
     )
@@ -489,3 +721,4 @@ char* IRBIS_CALL IC_delim_reset
 {
     return line;
 }
+

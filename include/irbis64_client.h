@@ -4,8 +4,16 @@
 #ifndef IRBIS64_CLIENT_H
 #define IRBIS64_CLIENT_H
 
-#if defined(_WIN64) || defined(__WIN64__)
+#if defined(_WIN64) || defined(__WIN64__) || defined(__x86_64__)
 #error 64-bit mode not supported!
+#endif
+
+#if !defined(__WIN32__) && !defined(_WIN32) && !defined(WIN32)
+#error Only WIN32 is supported!
+#endif
+
+#if !defined(_MSC_VER)
+#error Only Visual C++ is supported!
 #endif
 
 #define IRBIS_IMPORT /* __declspec(dllimport) */
@@ -209,6 +217,190 @@ IRBIS_IMPORT int IRBIS_CALL IC_field
         int bufSize
     );
 
+// Добавить поле в запись
+IRBIS_IMPORT int IRBIS_CALL IC_fldadd
+    (
+        char *record,
+        int fieldTag,
+        int fieldIndex,
+        const char *fieldValue,
+        int bufSize
+    );
+
+// Заменить поле в записи
+IRBIS_IMPORT int IRBIS_CALL IC_fldrep
+    (
+        char *record,
+        int fieldIndex,
+        const char *fieldValue,
+        int bufSize
+    );
+
+// Определить количество полей в записи
+IRBIS_IMPORT int IRBIS_CALL IC_nfields
+    (
+        const char *record
+    );
+
+// Определить количество повторений поля с заданной меткой
+IRBIS_IMPORT int IRBIS_CALL IC_nocc
+    (
+        const char *record,
+        int fieldTag
+    );
+
+// Определить метку поля с заданным порядковым номером
+IRBIS_IMPORT int IRBIS_CALL IC_fldtag
+    (
+        const char *record,
+        int fieldIndex
+    );
+
+// Опустошить запись
+IRBIS_IMPORT int IRBIS_CALL IC_fldempty
+    (
+        char *record
+    );
+
+// Изменить mfn записи
+IRBIS_IMPORT int IRBIS_CALL IC_changemfn
+    (
+        char *record,
+        int newMfn
+    );
+
+// Установить в статусе записи признак логической удаленности
+IRBIS_IMPORT int IRBIS_CALL IC_recdel
+    (
+        char *record
+    );
+
+// Снять в статусе записи признак логической удаленности
+IRBIS_IMPORT int IRBIS_CALL IC_recundel
+    (
+        char *record
+    );
+
+// Снять в статусе записи признак заблокированности
+IRBIS_IMPORT int IRBIS_CALL IC_recunlock
+    (
+        char *record
+    );
+
+// Прочитать mfn записи
+IRBIS_IMPORT int IRBIS_CALL IC_getmfn
+    (
+        const char *record
+    );
+
+// Создать пустую запись
+IRBIS_IMPORT int IRBIS_CALL IC_recdummy
+    (
+        char *record,
+        int bufSize
+    );
+
+// Прочитать в статусе записи признак актуализированности
+IRBIS_IMPORT int IRBIS_CALL IC_isActualized
+    (
+        const char *record
+    );
+
+// Прочитать в статусе записи признак заблокированности
+IRBIS_IMPORT int IRBIS_CALL IC_isLocked
+    (
+        const char *record
+    );
+
+// Прочитать в статусе записи признак логической удаленности
+IRBIS_IMPORT int IRBIS_CALL IC_isDeleted
+    (
+        const char *record
+    );
+
+// ===================================================================
+// Функции для работы со словарем базы данных
+// ===================================================================
+
+// Получить список терминов словаря, начиная с заданного
+IRBIS_IMPORT int IRBIS_CALL IC_nexttrm
+    (
+        const char *database,
+        const char *term,
+        int number,
+        char *answer,
+        int bufSize
+    );
+
+// Получить список терминов словаря, начиная с заданного,
+// и расформатировать записи, соответствующие первой ссылке каждого термина
+IRBIS_IMPORT int IRBIS_CALL IC_nexttrmgroup
+    (
+        const char *database,
+        const char *term,
+        int number,
+        const char *format,
+        char *answer,
+        int bufSize
+    );
+
+// Получить список терминов словаря, начиная с заданного, в обратном порядке
+IRBIS_IMPORT int IRBIS_CALL IC_prevtrm
+    (
+        const char *database,
+        const char *term,
+        int number,
+        char *answer,
+        int bufSize
+    );
+
+// Получить список терминов словаря, начиная с заданного, в обратном порядке
+// и расформатировать записи, соответствующие первой ссылке каждого термина
+IRBIS_IMPORT int IRBIS_CALL IC_prevtrmgroup
+    (
+        const char *database,
+        const char *term,
+        int number,
+        const char *format,
+        char *answer,
+        int bufSize
+    );
+
+// Получить список ссылок для заданного термина
+IRBIS_IMPORT int IRBIS_CALL IC_posting
+    (
+        const char *database,
+        const char *term,
+        int number,
+        int first,
+        char *answer,
+        int bufSize
+    );
+
+// Получить список первых ссылок для списка заданных терминов
+IRBIS_IMPORT int IRBIS_CALL IC_postinggroup
+    (
+        const char *database,
+        const char *terms,
+        char *answer,
+        int bufSize
+    );
+
+// Получить список ссылок для заданного термина и расформатировать
+// записи, им соответствующие
+IRBIS_IMPORT int IRBIS_CALL IC_postingformat
+    (
+        const char *database,
+        const char *term,
+        int number,
+        int first,
+        const char *format,
+        char *formattedAnswer,
+        int formattedBufSize,
+        char *linkAnswer,
+        int linkBufSize
+    );
+
 // ===================================================================
 // Функции поиска
 // ===================================================================
@@ -250,6 +442,16 @@ IRBIS_IMPORT int IRBIS_CALL IC_sformat
         const char *database,
         int mfn,
         const char *format,
+        char *answer,
+        int bufSize
+    );
+
+// Расформатирование записи в клиентском представлении
+IRBIS_IMPORT int IRBIS_CALL IC_record_sformat
+    (
+        const char *database,
+        const char *format,
+        const char *record,
         char *answer,
         int bufSize
     );

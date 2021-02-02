@@ -6,6 +6,14 @@ image: Visual Studio 2013
 before_build:
   - cmd: C:\Python36-x64\python -m pip install --upgrade pip
   - cmd: C:\Python36-x64\Scripts\pip install --upgrade pygount
-  - cmd: C:\Python36-x64\Scripts\pygount libs -f summary -s c
+  - cmd: C:\Python36-x64\Scripts\pygount include -f summary
 
-build_script: build.cmd
+build_script:
+  - cd tests
+  - build.cmd
+  - cd ..
+  - build.cmd
+
+artifacts:
+  - path: artifacts
+    name: Binaries

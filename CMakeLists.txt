@@ -27,5 +27,14 @@ target_include_directories(${PROJECT_NAME}
     ${PROJECT_SOURCE_DIR}/include
 )
 
+# where artifacts will be gathered
+set (ARTIFACTS ${PROJECT_SOURCE_DIR}/artifacts)
+
+# installation settings
+install (FILES ${PROJECT_SOURCE_DIR}/include/irbis64_client.h  DESTINATION ${ARTIFACTS})
+install (FILES ${PROJECT_SOURCE_DIR}/libs/irbis64_client.dll   DESTINATION ${ARTIFACTS})
+install (FILES ${PROJECT_SOURCE_DIR}/tests/build/Debug/irbis64_client.exp DESTINATION ${ARTIFACTS})
+install (FILES ${PROJECT_SOURCE_DIR}/tests/build/Debug/irbis64_client.lib DESTINATION ${ARTIFACTS})
+
 target_link_libraries(${PROJECT_NAME}
         "${PROJECT_SOURCE_DIR}/libs/irbis64_client.lib")

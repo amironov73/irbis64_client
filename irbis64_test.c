@@ -19,6 +19,12 @@ int main (int argc, char **argv)
     int answerSize = 32000, recordSize = 32000;
     int fieldIndex;
 
+    rc = IC_set_show_waiting (-1);
+    printf ("IC_set_show_waiting=%d\n", rc);
+
+    rc = IC_set_blocksocket (1);
+    printf ("IC_set_blocksocket=%d\n\n", rc);
+
     if (argc > 1) {
         hostname = (const char *) argv[1];
 
