@@ -24,6 +24,74 @@ extern "C" {
 #endif
 
 // ===================================================================
+// Коды ошибок
+// ===================================================================
+
+#define NO_ERROR                0     // нормальное завершение
+#define ERR_USER                -1    // ошибка завершения - прервано пользователем или общая ошибка
+#define ERR_BUSY                -2    // не завершена обработка предыдущего запроса
+#define ERR_UNKNOWN             -3    // неизвестная ошибка
+#define ERR_BUFSIZE             -4    // выходной буфер мал
+#define TERM_NOT_EXISTS         -202  // термин не существует
+#define TERM_LAST_IN_LIST       -203  // последний термин
+#define TERM_FIRST_IN_LIST      -204  // первый термин
+#define ERR_DBEWLOCK            -300  // монопольная блокировка БД
+#define ERR_RECLOCKED           -602  // запись заблокирована на ввод
+#define VERSION_ERROR           -608  // при записи обнаружено несоответстивие версий
+#define READ_WRONG_MFN          -140  // заданный MFN вне пределов БД
+#define REC_DELETE              -603  // запись логически удалена
+#define REC_PHYS_DELETE         -605  // запись физически удалена
+#define ERROR_CLIENT_FMT        -999  // ошибка в формате
+#define SERVER_EXECUTE_ERROR    -1111 // ошибка выполнения на сервере
+#define ANSWER_LENGTH_ERROR     -1112 // несоответсвие полученной и реальной длины
+#define WRONG_PROTOCOL          -2222 // ошибка протокола
+#define CLIENT_NOT_IN_LIST      -3333 // незарегистрированный клиент
+#define CLIENT_NOT_IN_USE       -3334 // незарегистрированный клиент не сделал irbis-reg
+#define CLIENT_IDENTIFIER_WRONG -3335 // неправильный уникальный идентификатор
+#define CLIENT_LIST_OVERLOAD    -3336 // зарегистрировано максимально допустимое количество клиентов
+#define CLIENT_ALREADY_EXISTS   -3337 // клиент уже зарегистрирован
+#define CLIENT_NOT_ALLOWED      -3338 // нет доступа к командам АРМа
+#define WRONG_PASSWORD          -4444 // неверный пароль
+#define FILE_NOT_EXISTS         -5555 // файл не существует
+#define SERVER_OVERLOAD         -6666 // сервер перегружен достигнуто максимальное число потоков обработки
+#define PROCESS_ERROR           -7777 // не удалось запустить/прервать поток или процесс администратора
+#define GLOBAL_ERROR            -8888 // gbl обрушилась
+
+// коды путей ИРБИС
+
+#define SYSPATH              0  // папка, куда установлен сервер
+#define DATAPATH             1  // папка DATAI
+#define DBNPATH2             2  // путь на мастер-файл базы данных
+#define DBNPATH3             3  // путь на словарь базы данных
+#define DBNPATH10            10 // путь на параметрию базы данных
+#define FULLTEXTPATH         11 // путь на полные тексты
+#define INTERNALRESOURCEPATH 12 // внутренний ресурс
+
+// коды АРМов
+
+#define IRBIS_READER        'R'
+#define IRBIS_ADMINISTRATOR 'A'
+#define IRBIS_CATALOG       'C'
+#define IRBIS_COMPLECT      'M'
+#define IRBIS_BOOKLAND      'B'
+#define IRBIS_BOOKPROVD     'K'
+
+#define MAX_POSTINGS_IN_PACKET 32758 // максимальное число ссылок в пакете с сервера
+
+// ===================================================================
+// Буфер для данных
+// ===================================================================
+
+#pragma pack(push, 1)
+typedef struct TBuffer
+{
+    int size;
+    int capacity;
+    char *data;
+} *PBuffer;
+#pragma pack(pop)
+
+// ===================================================================
 // Функции общего назначения
 // ===================================================================
 
@@ -194,6 +262,19 @@ IRBIS_IMPORT int IRBIS_CALL IC_maxmfn
     (
         const char *database
     );
+
+/*
+// Функция недоступна
+// Связанная групповая запись/обновление записей в базах данных
+IRBIS_IMPORT int IRBIS_CALL IC_updategroup_sinhronize
+    (
+        int lock,
+        int ifUpdate,
+        const char *databases,
+        char **answer,
+        int bufSize
+    );
+*/
 
 // ===================================================================
 // Функции для работы с записью

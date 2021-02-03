@@ -214,6 +214,21 @@ int IRBIS_CALL IC_maxmfn
    return 0;
 }
 
+/*
+// Функция недоступна
+int IRBIS_CALL IC_updategroup_sinhronize
+    (
+        int lock,
+        int ifUpdate,
+        const char *databases,
+        char **answer,
+        int bufSize
+    )
+{
+    return 0;
+}
+*/
+
 int IRBIS_CALL IC_fieldn
     (
         const char *record,

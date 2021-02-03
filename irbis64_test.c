@@ -41,7 +41,7 @@ int main (int argc, char **argv)
     memset (answer, 0, answerSize);
     rc = IC_reg (hostname, "6666", 'A', username, password, &panswer, answerSize);
     printf ("IC_reg=%d\n", rc);
-    if (rc < 0) {
+    if (rc < NO_ERROR) {
         printf ("EXIT\n");
         return 1;
     } else {
@@ -57,7 +57,7 @@ int main (int argc, char **argv)
     printf ("\n");
     rc = IC_read (DB, 1, 0, &precord, recordSize);
     printf ("IC_read=%d\n", rc);
-    if (rc >= 0) {
+    if (rc >= NO_ERROR) {
 
         // Доступ к полям записи
         fieldIndex = IC_fieldn (record, 200, 1);
@@ -66,7 +66,7 @@ int main (int argc, char **argv)
             memset(answer, 0, answerSize);
             rc = IC_field (record, fieldIndex, 'a', answer, answerSize);
             printf ("IC_field=%d\n", rc);
-            if (rc >= 0) {
+            if (rc >= NO_ERROR) {
                 printf ("IC_field=%s", answer);
             }
         }
@@ -77,7 +77,7 @@ int main (int argc, char **argv)
     memset (answer, 0, answerSize);
     rc = IC_sformat (DB, 1, "@brief", answer, answerSize);
     printf ("IC_sformat=%d\n", rc);
-    if (rc >= 0) {
+    if (rc >= NO_ERROR) {
         printf ("IC_sformat=%s\n", answer);
     }
 
@@ -87,7 +87,7 @@ int main (int argc, char **argv)
     rc = IC_search (DB, "\x4B\x3D\xD0\xB1\xD0\xB5\xD1\x82\xD0\xBE\xD0\xBD\x24", 10, 1, "@brief",
         answer, answerSize);
     printf ("IC_search=%d\n", rc);
-    if (rc >= 0) {
+    if (rc >= NO_ERROR) {
         printf ("IC_search=%s\n", answer);
     }
 
@@ -96,7 +96,7 @@ int main (int argc, char **argv)
     memset (answer, 0, answerSize);
     rc = IC_adm_getProcessList (answer, answerSize);
     printf ("IC_adm_getProcessList=%d\n", rc);
-    if (rc >= 0) {
+    if (rc >= NO_ERROR) {
         printf ("IC_adm_getProcessList=%s\n", answer);
     }
 
